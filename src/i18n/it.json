@@ -1,0 +1,22 @@
+{
+  "app.title": "Smanetting",
+  "app.subtitle": "Fotografia interattiva",
+  "app.tagline": "Smanetta con i parametri e guarda l'effetto in tempo reale.",
+
+  "switch.approach.label": "Rendering",
+  "switch.approach.three": "3D real-time",
+  "switch.approach.layered": "2.5D a livelli",
+  "switch.approach.schematic": "Schematico",
+
+  "switch.style.label": "Stile",
+  "switch.style.realistic": "Realistico",
+  "switch.style.mixed": "Misto",
+  "switch.style.schematic": "Illustrato",
+
+  "switch.locale.label": "Lingua",
+
+  "home.placeholder.title": "Fondazione pronta",
+  "home.placeholder.body": "Le demo interattive arriveranno con le prossime milestone. Per ora i tre switch globali sono attivi, persistiti nel browser e riflessi nell'URL.",
+  "home.core.label": "Core fotografico attivo",
+  "home.core.example": "f/16 · 1/125 s · ISO 100 in pieno sole"
+}
