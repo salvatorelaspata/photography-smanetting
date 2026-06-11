@@ -17,6 +17,23 @@
 
   "demos.nav.label": "Concetti",
 
+  "nav.home": "Tutti i concetti",
+  "section.theory": "Teoria",
+  "section.demo": "Demo interattiva",
+  "footer.note": "Smanetting · progetto didattico per imparare la fotografia",
+
+  "landing.lead": "Scegli un concetto: per ognuno trovi una spiegazione approfondita e una demo interattiva in cui muovi i parametri e vedi l'effetto in tempo reale.",
+  "landing.anatomy.title": "Anatomia della fotocamera",
+  "landing.anatomy.blurb": "Reflex, sensore e ottiche scomposti in 3D, allo scroll.",
+  "landing.soon": "In arrivo",
+
+  "card.open": "Apri",
+  "card.shutter.blurb": "Congela l'azione o trasformala in scia giocando col tempo di posa.",
+  "card.aperture.blurb": "Sfondo cremoso o tutto a fuoco: diaframma e profondità di campo.",
+  "card.iso.blurb": "Poca luce e rumore: il compromesso della sensibilità.",
+  "card.focal.blurb": "Angolo di campo e compressione prospettica al variare della focale.",
+  "card.triangle.blurb": "Tempo, diaframma e ISO insieme: l'equilibrio dell'esposizione.",
+
   "engine.fallback": "{from} non è ancora pronto per questa demo → la vedi in versione {to}.",
 
   "demo.tryThis": "Prova questo",

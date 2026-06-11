@@ -5,6 +5,7 @@ import { computeDof } from '../../core/photography/dof';
 import { FULL_FRAME } from '../../core/photography/sensor';
 import { APERTURES_FULL, formatAperture } from '../../core/params/stops';
 import { ApertureScene } from '../../engines/schematic/ApertureScene';
+import { ApertureThree } from '../../engines/three';
 
 const FOCAL = 50;
 
@@ -48,7 +49,7 @@ export const apertureDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: ApertureScene },
+  renderers: { schematic: ApertureScene, three: ApertureThree },
   fallback: 'schematic',
   presets: {
     portrait: { labelKey: 'demo.aperture.preset.portrait', values: { apertureFstop: 1.4, focusDistanceM: 2 } },

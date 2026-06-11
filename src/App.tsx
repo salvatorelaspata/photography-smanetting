@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { I18nProvider } from './i18n';
 import { useAppStore } from './state/store';
-import { useUrlSync } from './state/useUrlSync';
-import { Shell } from './ui/Shell';
+import { Layout } from './ui/Layout';
+import { Landing } from './routes/Landing';
+import { ConceptPage } from './routes/ConceptPage';
 
 export function App() {
   const style = useAppStore((s) => s.style);
-  useUrlSync();
 
   // Lo stile visivo guida i token CSS via attributo data-style su <html>.
   useEffect(() => {
@@ -15,7 +16,15 @@ export function App() {
 
   return (
     <I18nProvider>
-      <Shell />
+      <HashRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Landing />} />
+            <Route path="/c/:id" element={<ConceptPage />} />
+            <Route path="*" element={<Landing />} />
+          </Routes>
+        </Layout>
+      </HashRouter>
     </I18nProvider>
   );
 }
