@@ -1,5 +1,6 @@
 import { EffectComposer, DepthOfField } from '@react-three/postprocessing';
 import type { RendererComponent } from '../types';
+import { STYLE_TOKENS } from '../../styles/tokens';
 import { Canvas3D } from './Canvas3D';
 
 const BALLS: { p: [number, number, number]; c: string }[] = [
@@ -12,9 +13,10 @@ const BALLS: { p: [number, number, number]; c: string }[] = [
 ];
 
 /** Scena 3D dell'apertura: soggetto a fuoco + punti luce sullo sfondo che diventano bokeh. */
-export const ApertureScene3D: RendererComponent = ({ params }) => {
+export const ApertureScene3D: RendererComponent = ({ params, style }) => {
   const f = params.apertureFstop;
   const focus = params.focusDistanceM;
+  const toon = STYLE_TOKENS[style].material3d === 'toon';
   // Aperture ampie (f piccolo) → bokeh grande; fuoco normalizzato dalla distanza.
   const bokehScale = Math.min(12, Math.max(0.6, 14 / f));
   const focusDistance = Math.min(0.03, Math.max(0.001, focus / 400));
@@ -25,7 +27,11 @@ export const ApertureScene3D: RendererComponent = ({ params }) => {
       <directionalLight position={[3, 5, 4]} intensity={1} />
       <mesh position={[0, 0, 0.5]}>
         <icosahedronGeometry args={[0.95, 0]} />
-        <meshStandardMaterial color="#e7e9ee" roughness={0.4} metalness={0.1} />
+        {toon ? (
+          <meshToonMaterial color="#e7e9ee" />
+        ) : (
+          <meshStandardMaterial color="#e7e9ee" roughness={0.4} metalness={0.1} />
+        )}
       </mesh>
       {BALLS.map((b, i) => (
         <mesh key={i} position={b.p}>

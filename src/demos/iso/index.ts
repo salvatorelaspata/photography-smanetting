@@ -4,6 +4,7 @@ import { computeExposure } from '../../core/photography/exposure';
 import { computeNoise } from '../../core/photography/noise';
 import { ISO_FULL } from '../../core/params/stops';
 import { IsoScene } from '../../engines/schematic/IsoScene';
+import { IsoLayered } from '../../engines/layered/IsoLayered';
 
 function computeDerived(p: ParamValues): DerivedPhysics {
   return {
@@ -28,7 +29,7 @@ export const isoDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: IsoScene },
+  renderers: { schematic: IsoScene, layered: IsoLayered },
   fallback: 'schematic',
   presets: {
     daylight: { labelKey: 'demo.iso.preset.daylight', values: { iso: 100 } },

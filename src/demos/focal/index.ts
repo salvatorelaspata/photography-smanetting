@@ -5,6 +5,7 @@ import { computeFov } from '../../core/photography/fov';
 import { FULL_FRAME } from '../../core/photography/sensor';
 import { FOCAL_LENGTHS } from '../../core/params/stops';
 import { FocalScene } from '../../engines/schematic/FocalScene';
+import { FocalLayered } from '../../engines/layered/FocalLayered';
 
 function computeDerived(p: ParamValues): DerivedPhysics {
   return {
@@ -29,7 +30,7 @@ export const focalDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: FocalScene },
+  renderers: { schematic: FocalScene, layered: FocalLayered },
   fallback: 'schematic',
   presets: {
     wide: { labelKey: 'demo.focal.preset.wide', values: { focalLengthMm: 24 } },

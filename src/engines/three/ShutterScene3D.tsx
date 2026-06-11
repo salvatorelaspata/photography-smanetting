@@ -2,13 +2,24 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import type { Mesh } from 'three';
 import type { RendererComponent } from '../types';
+import { STYLE_TOKENS } from '../../styles/tokens';
 import { usePrefersReducedMotion } from '../../ui/usePrefersReducedMotion';
 import { Canvas3D } from './Canvas3D';
 
 const RANGE = 3.2;
 
 /** Soggetto in moto: la posizione è animata, la "scia" è uno stiramento lungo X ∝ blur. */
-function Subject({ blurPx, animate }: { blurPx: number; animate: boolean }) {
+function Subject({
+  blurPx,
+  animate,
+  color,
+  toon,
+}: {
+  blurPx: number;
+  animate: boolean;
+  color: string;
+  toon: boolean;
+}) {
   const ref = useRef<Mesh>(null);
   const dir = useRef(1);
   const x = useRef(0);
@@ -31,25 +42,31 @@ function Subject({ blurPx, animate }: { blurPx: number; animate: boolean }) {
   });
 
   const stretch = 1 + Math.min(blurPx / 90, 6);
+  const opacity = stretch > 1.6 ? 0.78 : 1;
 
   return (
     <mesh ref={ref} scale={[stretch, 1, 1]}>
       <sphereGeometry args={[0.5, 32, 32]} />
-      <meshStandardMaterial
-        color="#52e0c4"
-        roughness={0.3}
-        metalness={0.1}
-        transparent
-        opacity={stretch > 1.6 ? 0.78 : 1}
-      />
+      {toon ? (
+        <meshToonMaterial color={color} transparent opacity={opacity} />
+      ) : (
+        <meshStandardMaterial
+          color={color}
+          roughness={0.3}
+          metalness={0.1}
+          transparent
+          opacity={opacity}
+        />
+      )}
     </mesh>
   );
 }
 
-/** Scena 3D dell'otturatore: mosso reale in prospettiva. */
-export const ShutterScene3D: RendererComponent = ({ derived, animate }) => {
+/** Scena 3D dell'otturatore: mosso reale in prospettiva, materiale guidato dallo stile. */
+export const ShutterScene3D: RendererComponent = ({ derived, animate, style }) => {
   const reduce = usePrefersReducedMotion();
   const blurPx = derived.motion?.blurPx ?? 0;
+  const tk = STYLE_TOKENS[style];
 
   return (
     <Canvas3D frameloop="always" cameraPosition={[0, 1.4, 6.5]}>
@@ -65,7 +82,12 @@ export const ShutterScene3D: RendererComponent = ({ derived, animate }) => {
           <meshStandardMaterial color="#2a3340" />
         </mesh>
       ))}
-      <Subject blurPx={blurPx} animate={animate && !reduce} />
+      <Subject
+        blurPx={blurPx}
+        animate={animate && !reduce}
+        color={tk.accent3d}
+        toon={tk.material3d === 'toon'}
+      />
     </Canvas3D>
   );
 };

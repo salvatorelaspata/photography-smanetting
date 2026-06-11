@@ -9,6 +9,7 @@
   --accent-ink: #0b0d10;
   --border: #262b36;
   --radius: 12px;
+  --scene-saturation: 1;
   color-scheme: dark;
 }
 
@@ -17,6 +18,7 @@
   --surface: #16130f;
   --accent: #ff8a3d;
   --border: #2c2620;
+  --scene-saturation: 1.12;
 }
 
 :root[data-style='mixed'] {
@@ -29,6 +31,7 @@
   --accent: #52e0c4;
   --ink: #eef3f7;
   --border: #1d2530;
+  --scene-saturation: 0.72;
 }
 
 * {
@@ -779,4 +782,16 @@ code {
   border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 0.9rem;
+}
+
+/* ---------- Engine 2.5D a livelli ---------- */
+.scene--layered {
+  display: block;
+  width: 100%;
+  height: auto;
+  filter: saturate(var(--scene-saturation, 1));
+}
+.scene--layered .scene__label,
+.scene--layered .scene__label-sm {
+  fill: #fff;
 }
