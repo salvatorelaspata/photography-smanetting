@@ -1,16 +1,14 @@
 import { useT } from '../i18n';
 import { useAppStore } from '../state/store';
-import { computeExposure } from '../core/photography/exposure';
+import { DEMOS } from '../demos/registry';
 import { SwitchBar } from './SwitchBar';
+import { DemoView } from './DemoView';
 
-/** Guscio dell'app: header, barra switch, area contenuto (placeholder M0). */
+/** Guscio dell'app: header, switch globali, navigazione concetti, demo corrente. */
 export function Shell() {
   const t = useT();
-  const approach = useAppStore((s) => s.approach);
-  const style = useAppStore((s) => s.style);
-
-  // Prova end-to-end che il core fotografico è incluso nel bundle e calcola davvero.
-  const ev = computeExposure({ apertureFstop: 16, shutterSeconds: 1 / 125, iso: 100 }, 15).evAt100;
+  const demoId = useAppStore((s) => s.currentDemoId);
+  const setCurrentDemo = useAppStore((s) => s.setCurrentDemo);
 
   return (
     <div className="app">
@@ -23,22 +21,26 @@ export function Shell() {
 
       <SwitchBar />
 
+      <nav className="demos-nav" aria-label={t('demos.nav.label')}>
+        {DEMOS.map((d) => (
+          <button
+            key={d.id}
+            type="button"
+            className={`chip ${d.id === demoId ? 'chip--on' : ''}`}
+            aria-pressed={d.id === demoId}
+            onClick={() => setCurrentDemo(d.id)}
+          >
+            {t(d.titleKey)}
+          </button>
+        ))}
+      </nav>
+
       <main className="app__main">
-        <section className="card">
-          <h2 className="card__title">{t('home.placeholder.title')}</h2>
-          <p>{t('home.placeholder.body')}</p>
-          <p className="muted">
-            {t('home.core.label')} — <code>EV {ev.toFixed(2)}</code>{' '}
-            <span className="dim">({t('home.core.example')})</span>
-          </p>
-          <p className="muted">
-            Rendering: <code>{approach}</code> · Stile: <code>{style}</code>
-          </p>
-        </section>
+        <DemoView demoId={demoId} />
       </main>
 
       <footer className="app__footer dim">
-        Milestone M0–M1 · vedi <code>docs/ROADMAP.md</code>
+        Milestone M2 · vedi <code>docs/ROADMAP.md</code>
       </footer>
     </div>
   );

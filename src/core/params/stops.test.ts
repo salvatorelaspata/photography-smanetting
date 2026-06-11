@@ -1,11 +1,25 @@
 import { describe, it, expect } from 'vitest';
-import { snapToSequence, APERTURES_FULL, ISO_FULL, formatShutter, formatAperture } from './stops';
+import {
+  snapToSequence,
+  indexOfNearest,
+  APERTURES_FULL,
+  ISO_FULL,
+  formatShutter,
+  formatAperture,
+} from './stops';
 
 describe('snapToSequence', () => {
   it('aggancia al valore più vicino della sequenza', () => {
     expect(snapToSequence(3, APERTURES_FULL)).toBe(2.8);
     expect(snapToSequence(500, ISO_FULL)).toBe(400);
     expect(snapToSequence(900, ISO_FULL)).toBe(800);
+  });
+});
+
+describe('indexOfNearest', () => {
+  it('trova l indice del valore più vicino', () => {
+    expect(indexOfNearest(3, APERTURES_FULL)).toBe(APERTURES_FULL.indexOf(2.8));
+    expect(indexOfNearest(100, ISO_FULL)).toBe(1);
   });
 });
 

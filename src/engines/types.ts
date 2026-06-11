@@ -13,6 +13,9 @@ import type { WhiteBalanceDerived } from '../core/photography/whiteBalance';
 
 export type { RenderingApproach, VisualStyle };
 
+/** Insieme dei parametri di una demo (valori numerici indicizzati per chiave). */
+export type ParamValues = Record<string, number>;
+
 /** Valori fisici calcolati dal core, comuni a tutti gli engine. */
 export interface DerivedPhysics {
   exposure: ExposureDerived;
@@ -23,11 +26,15 @@ export interface DerivedPhysics {
   whiteBalance?: WhiteBalanceDerived;
 }
 
-export interface SceneProps<P> {
+export interface SceneProps<P extends ParamValues = ParamValues> {
   params: P;
   derived: DerivedPhysics;
   style: VisualStyle;
   size: { width: number; height: number };
+  /** Se false (o reduced-motion) la scena resta statica. */
+  animate: boolean;
 }
 
-export type RendererComponent<P> = (props: SceneProps<P>) => ReactNode;
+export type RendererComponent<P extends ParamValues = ParamValues> = (
+  props: SceneProps<P>,
+) => ReactNode;

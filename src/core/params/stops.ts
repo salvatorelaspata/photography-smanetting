@@ -15,6 +15,9 @@ export const SHUTTER_FULL_SECONDS = [
 /** Valori ISO a stop pieni. */
 export const ISO_FULL = [50, 100, 200, 400, 800, 1600, 3200, 6400, 12800, 25600] as const;
 
+/** Distanze focali "tipiche" (mm) per la ghiera della demo focale. */
+export const FOCAL_LENGTHS = [16, 24, 35, 50, 85, 135, 200, 300] as const;
+
 /** Restituisce il valore della sequenza più vicino a `value`. */
 export function snapToSequence(value: number, sequence: readonly number[]): number {
   let best = sequence[0];
@@ -26,6 +29,20 @@ export function snapToSequence(value: number, sequence: readonly number[]): numb
       bestDist = d;
     }
   }
+  return best;
+}
+
+/** Indice dell'elemento della sequenza più vicino a `value`. */
+export function indexOfNearest(value: number, sequence: readonly number[]): number {
+  let best = 0;
+  let bestDist = Infinity;
+  sequence.forEach((v, i) => {
+    const d = Math.abs(v - value);
+    if (d < bestDist) {
+      best = i;
+      bestDist = d;
+    }
+  });
   return best;
 }
 
