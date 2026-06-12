@@ -14,7 +14,7 @@ function Stat({ label, value }: { label: string; value: string }) {
 /** Pannello-lezione: spiegazione, punti chiave e lettura dei valori derivati pertinenti. */
 export function LessonPanel({ demo, derived }: { demo: DemoModule; derived: DerivedPhysics }) {
   const t = useT();
-  const { exposure, motion, dof, fov, noise } = derived;
+  const { exposure, motion, dof, fov, noise, whiteBalance } = derived;
 
   return (
     <aside className="lesson">
@@ -42,6 +42,7 @@ export function LessonPanel({ demo, derived }: { demo: DemoModule; derived: Deri
         {fov && <Stat label={t('readout.aov')} value={`${Math.round(fov.diagonalDeg)}°`} />}
         {fov && <Stat label={t('readout.crop')} value={`×${fov.cropFactor.toFixed(2)}`} />}
         {noise && <Stat label={t('readout.snr')} value={`${Math.round(noise.snrDb)} dB`} />}
+        {whiteBalance && <Stat label={t('readout.wb')} value={`${whiteBalance.kelvin} K`} />}
       </dl>
     </aside>
   );

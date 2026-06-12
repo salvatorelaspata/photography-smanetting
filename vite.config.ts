@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/photography-smanetting/' : '/',
   plugins: [react()],
+  // three.js è in un chunk lazy (caricato solo per 3D/anatomia): alziamo la soglia di avviso.
+  build: { chunkSizeWarningLimit: 1000 },
   test: {
     environment: 'node',
     include: ['src/**/*.test.ts'],

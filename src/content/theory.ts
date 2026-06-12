@@ -155,4 +155,72 @@ export const THEORY: Record<string, TheoryBlock[]> = {
       ],
     },
   ],
+
+  histogram: [
+    {
+      heading: 'Leggere i toni',
+      paragraphs: [
+        'L’istogramma è un grafico della distribuzione dei toni: ombre a sinistra, mezzitoni al centro, alte luci a destra. L’altezza indica quanti pixel hanno quel valore.',
+        'Non esiste un istogramma “giusto” in assoluto: dipende dalla scena. Una scena scura avrà la gobba a sinistra, una scena chiara a destra.',
+      ],
+    },
+    {
+      heading: 'Evitare il clipping',
+      paragraphs: [
+        'Quando i toni si accumulano contro un bordo sono “tagliati” (clipping): le alte luci bruciate diventano bianco puro senza dettaglio, le ombre chiuse nero puro. Sono perdite irrecuperabili.',
+        'La tecnica “esponi a destra” (ETTR) spinge l’istogramma il più a destra possibile senza bruciare le alte luci, massimizzando il segnale e riducendo il rumore nelle ombre.',
+      ],
+    },
+  ],
+
+  whiteBalance: [
+    {
+      heading: 'Il colore della luce',
+      paragraphs: [
+        'Ogni sorgente ha una temperatura colore, in kelvin: candela e tramonto sono caldi (2000–3000 K, arancio), il sole di mezzogiorno è neutro (~5500 K), ombra e cielo coperto sono freddi (7000–9000 K, blu).',
+        'Il bilanciamento del bianco indica alla fotocamera il colore della luce, così da riportare i bianchi a neutro ed evitare dominanti indesiderate.',
+      ],
+    },
+    {
+      heading: 'Neutralizzare o interpretare',
+      paragraphs: [
+        'Impostare la temperatura corretta elimina la dominante; sbagliarla di proposito è uno strumento creativo: una dominante calda rende un ritratto accogliente, una fredda lo rende più severo.',
+        'In RAW il bilanciamento del bianco si modifica liberamente in post-produzione; in JPEG conviene azzeccarlo già allo scatto.',
+      ],
+    },
+  ],
+
+  panning: [
+    {
+      heading: 'Seguire il soggetto',
+      paragraphs: [
+        'Il panning consiste nel seguire il soggetto in movimento con la fotocamera mentre scatti a un tempo relativamente lungo: il soggetto, fermo rispetto all’inquadratura, resta nitido, mentre lo sfondo si striscia in scie orizzontali.',
+        'È la tecnica classica per dare velocità ad auto, moto, ciclisti e animali in corsa.',
+      ],
+    },
+    {
+      heading: 'Tempo e tecnica',
+      paragraphs: [
+        'Il tempo si sceglie in base alla velocità: 1/30–1/60 s per un’auto, più lungo per soggetti lenti. Troppo breve e lo sfondo non si striscia abbastanza; troppo lungo ed è difficile tenere il soggetto a fuoco.',
+        'Conta il movimento fluido: si ruota con il corpo seguendo il soggetto, scattando a raffica per aumentare le probabilità di uno scatto nitido.',
+      ],
+    },
+  ],
+
+  crop: [
+    {
+      heading: 'Cosa cambia con la dimensione',
+      paragraphs: [
+        'Il sensore registra solo la parte centrale dell’immagine proiettata dall’obiettivo: un sensore più piccolo “ritaglia” un’inquadratura più stretta. È l’effetto crop.',
+        'Il fattore di crop misura il ritaglio rispetto al full frame (APS-C ~1.5×, Micro 4/3 2.0×): moltiplicando la focale per il crop si ottiene la focale equivalente.',
+      ],
+    },
+    {
+      heading: 'Vantaggi e compromessi',
+      paragraphs: [
+        'I sensori più piccoli rendono i teleobiettivi “più lunghi” (utile per sport e natura) e permettono corpi e ottiche più compatti.',
+        'In cambio raccolgono meno luce (più rumore ad alti ISO) e, a parità di inquadratura, offrono meno stacco dallo sfondo rispetto al full frame.',
+      ],
+    },
+  ],
 };

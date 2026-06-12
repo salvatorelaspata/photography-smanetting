@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useT } from '../i18n';
 import { DEMOS } from '../demos/registry';
 import { ConceptCard } from '../ui/ConceptCard';
@@ -19,18 +20,20 @@ export function Landing() {
           <ConceptCard key={d.id} demo={d} />
         ))}
 
-        <article className="concept-card concept-card--soon" aria-disabled="true">
-          <div className="concept-card__icon" aria-hidden="true">
-            <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
-              <rect x={10} y={16} width={28} height={18} rx={3} />
-              <circle cx={24} cy={25} r={6} />
-              <path d="M18 16 L21 11 L27 11 L30 16" />
-            </svg>
-          </div>
-          <h3 className="concept-card__title">{t('landing.anatomy.title')}</h3>
-          <p className="concept-card__blurb">{t('landing.anatomy.blurb')}</p>
-          <span className="concept-card__cta concept-card__cta--soon">{t('landing.soon')}</span>
-        </article>
+        <Link to="/anatomia" className="card-link">
+          <article className="concept-card concept-card--feature">
+            <div className="concept-card__icon" aria-hidden="true">
+              <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+                <rect x={10} y={16} width={28} height={18} rx={3} />
+                <circle cx={24} cy={25} r={6} />
+                <path d="M18 16 L21 11 L27 11 L30 16" />
+              </svg>
+            </div>
+            <h3 className="concept-card__title">{t('landing.anatomy.title')}</h3>
+            <p className="concept-card__blurb">{t('landing.anatomy.blurb')}</p>
+            <span className="concept-card__cta">{t('card.open')} →</span>
+          </article>
+        </Link>
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import type { RenderingApproach, VisualStyle } from '../types';
 const APPROACHES: RenderingApproach[] = ['three', 'layered', 'schematic'];
 const STYLES: VisualStyle[] = ['realistic', 'mixed', 'schematic'];
 
-/** Barra dei 3 switch globali: approccio di rendering, stile visivo, lingua. */
+/** Switch della demo: approccio di rendering e stile visivo (la lingua è globale, in topbar). */
 export function SwitchBar() {
   const t = useT();
   const approach = useAppStore((s) => s.approach);
@@ -46,15 +46,6 @@ export function SwitchBar() {
               {t(`switch.style.${s}`)}
             </button>
           ))}
-        </div>
-      </fieldset>
-
-      <fieldset className="switch">
-        <legend>{t('switch.locale.label')}</legend>
-        <div className="switch__options">
-          <button type="button" className="seg seg--on" aria-pressed={true}>
-            IT
-          </button>
         </div>
       </fieldset>
     </div>

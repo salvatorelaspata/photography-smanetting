@@ -191,3 +191,34 @@ M0 → M1 → M2 ─┬→ M3 ─┬──────────────�
 ## Primo passo operativo proposto
 Eseguire **M0** (scaffolding) e l'inizio di **M1** (core `exposure.ts` + test), così la base
 è pronta e verificabile prima di costruire la prima demo.
+
+---
+
+## Avanzamento (giugno 2026) e piano residuo
+
+**Completato:** core fotografico testato; **5 concetti core** (teoria approfondita + demo
+interattiva); **3 engine** commutabili a runtime (schematico, 3D/R3F, 2.5D via filtri SVG);
+**3 stili** commutabili (palette + materiale 3D + saturazione); **navigazione** (landing a card
++ routing + dettaglio teoria-prima); **M8/An1** anatomia reflex 3D scroll-driven.
+
+**Piano residuo, in ordine:**
+
+### Fase A — Completare l'anatomia (M8)
+- **A1** Framework explainer generico (riuso scroll/sezioni/parti 3D) + indice anatomia + route `/anatomia/:id`.
+- **A2** An2 **Sensore**: fotositi, filtro di Bayer, microlenti, gain↔ISO, dimensioni/crop.
+- **A3** An3 **Ottiche**: elementi/gruppi, messa a fuoco, diaframma, aberrazioni.
+
+### Fase B — Concetti aggiuntivi (M7)
+- **B1** Bilanciamento del bianco (+ rifinire `computeWhiteBalance`).
+- **B2** Esposizione & istogramma / metering (clipping, zone).
+- **B3** Panning (variante della demo otturatore).
+- **B4** Dimensione sensore / crop factor (collega focale↔DoF).
+- **B5** Rifinire i modelli provvisori (`noise` shot/read, `motion` più fisico).
+
+### Fase C — Percorso didattico & UX (M9)
+- **C1** Confronto A/B. **C2** Navigazione del percorso (avanti/indietro, indice progressivo).
+- **C3** Preset curati + deep-link condivisibile. **C4** (opz.) micro-quiz di comprensione.
+
+### Fase D — Rifinitura & release (M10)
+- **D1** Accessibilità completa (tastiera/ARIA/contrasto/focus). **D2** Performance e budget bundle.
+- **D3** i18n review (+ EN predisposto). **D4** Meta/SEO/OG, favicon, README utente, deploy Pages.
