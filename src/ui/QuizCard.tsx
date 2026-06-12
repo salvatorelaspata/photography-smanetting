@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useT } from '../i18n';
-import { QUIZ } from '../content/quiz';
+import { useAppStore } from '../state/store';
+import { quizFor } from '../content/quiz';
 
 /** Micro-quiz di verifica mostrato in fondo al concetto. */
 export function QuizCard({ demoId }: { demoId: string }) {
   const t = useT();
-  const quiz = QUIZ[demoId];
+  const locale = useAppStore((s) => s.locale);
+  const quiz = quizFor(demoId, locale);
   const [picked, setPicked] = useState<number | null>(null);
 
   if (!quiz) return null;

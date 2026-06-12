@@ -1,4 +1,6 @@
-/** Sezioni dell'explainer "Anatomia della reflex" (scroll-driven). Italiano per la v1. */
+/** Sezioni degli explainer di anatomia (scroll-driven), localizzate it/en. */
+
+import type { Locale } from '../types';
 
 export interface AnatomySection {
   id: string;
@@ -162,3 +164,149 @@ export const EXPLAINER_LIST: ExplainerDef[] = [
   EXPLAINERS.sensor,
   EXPLAINERS.optics,
 ];
+
+const REFLEX_SECTIONS_EN: AnatomySection[] = [
+  {
+    id: 'intro',
+    atProgress: 0,
+    highlight: null,
+    title: 'The DSLR, inside',
+    body: 'A DSLR (SLR) carries the lens’s light all the way to the viewfinder via a mirror: you see exactly what the sensor will record. Scroll to take it apart piece by piece.',
+  },
+  {
+    id: 'lens',
+    atProgress: 0.16,
+    highlight: 'lens',
+    title: 'Lens and aperture',
+    body: 'The lens gathers light and focuses it on the sensor plane. Inside, the blade aperture sets the opening, and with it light and depth of field.',
+  },
+  {
+    id: 'mirror',
+    atProgress: 0.32,
+    highlight: 'mirror',
+    title: 'Reflex mirror (45°)',
+    body: 'A mirror tilted at 45° intercepts the light and reflects it upward, into the viewfinder. At the moment of the shot it flips up to clear the path to the sensor.',
+  },
+  {
+    id: 'pentaprism',
+    atProgress: 0.48,
+    highlight: 'pentaprism',
+    title: 'Pentaprism and viewfinder',
+    body: 'The pentaprism straightens the image reflected by the mirror and sends it to the eyepiece: that’s why in the viewfinder you see the scene upright, not flipped or mirrored.',
+  },
+  {
+    id: 'shutter',
+    atProgress: 0.64,
+    highlight: 'shutter',
+    title: 'Focal-plane shutter',
+    body: 'In front of the sensor two curtains travel to uncover and then re-cover the sensitive surface: their run defines the shutter speed.',
+  },
+  {
+    id: 'sensor',
+    atProgress: 0.8,
+    highlight: 'sensor',
+    title: 'Sensor',
+    body: 'When the mirror is up and the curtains run, light reaches the sensor, which converts photons into an electrical signal: this is where the image is born.',
+  },
+  {
+    id: 'mirrorless',
+    atProgress: 0.94,
+    highlight: null,
+    title: 'DSLR vs mirrorless',
+    body: 'Mirrorless cameras drop the mirror and pentaprism: light always reaches the sensor and the viewfinder is electronic (EVF). A more compact body, the same physics of shutter, aperture and ISO.',
+  },
+];
+
+const SENSOR_SECTIONS_EN: AnatomySection[] = [
+  {
+    id: 'intro',
+    atProgress: 0,
+    highlight: null,
+    title: 'The sensor',
+    body: 'The sensor turns light into an electrical signal. It’s a grid of millions of photosites, each with a microlens and a colour filter. Scroll to separate its layers.',
+  },
+  {
+    id: 'microlens',
+    atProgress: 0.18,
+    highlight: 'microlens',
+    title: 'Microlenses',
+    body: 'Above each photosite a microlens funnels light toward the sensitive area, recovering photons that would fall into the gaps between the wells.',
+  },
+  {
+    id: 'bayer',
+    atProgress: 0.36,
+    highlight: 'bayer',
+    title: 'Bayer filter',
+    body: 'Each photosite sees a single colour through a red, green or blue filter, arranged in a mosaic (RGGB, with green doubled). Demosaicing then reconstructs the full colour of each pixel.',
+  },
+  {
+    id: 'photosite',
+    atProgress: 0.54,
+    highlight: 'photosite',
+    title: 'Photosites',
+    body: 'Each photosite is a well that collects the electrons freed by photons: the more light it gathers, the higher the signal and the better the signal-to-noise ratio.',
+  },
+  {
+    id: 'gain',
+    atProgress: 0.72,
+    highlight: 'photosite',
+    title: 'Gain and ISO',
+    body: 'The photosite’s signal is amplified before it becomes a number: that amplification is the ISO. More gain means more brightness, but also more visible noise.',
+  },
+  {
+    id: 'size',
+    atProgress: 0.9,
+    highlight: null,
+    title: 'Sensor size',
+    body: 'Larger sensors (full frame) gather more light and isolate the subject better; smaller ones (APS-C, M4/3) have a “crop” that narrows the angle of view for the same focal length.',
+  },
+];
+
+const OPTICS_SECTIONS_EN: AnatomySection[] = [
+  {
+    id: 'intro',
+    atProgress: 0,
+    highlight: null,
+    title: 'The lens',
+    body: 'A lens is a system of glass elements that gathers light and focuses it on the sensor. Scroll to separate the elements.',
+  },
+  {
+    id: 'elements',
+    atProgress: 0.2,
+    highlight: 'elements',
+    title: 'Elements and groups',
+    body: 'Several lenses (elements), gathered in groups, work together: some collect light, others correct defects. More elements give more correction, but also more reflections to manage.',
+  },
+  {
+    id: 'focus',
+    atProgress: 0.42,
+    highlight: 'focus',
+    title: 'Focusing',
+    body: 'Moving a group of lenses back and forth changes the point where the rays converge: that’s how you focus on subjects at different distances.',
+  },
+  {
+    id: 'iris',
+    atProgress: 0.64,
+    highlight: 'iris',
+    title: 'Blade aperture',
+    body: 'A ring of blades opens and closes the hole light passes through: it sets the aperture (f-number) and, with the number and shape of the blades, the look of the bokeh.',
+  },
+  {
+    id: 'aberration',
+    atProgress: 0.84,
+    highlight: 'aberration',
+    title: 'Aberrations and coatings',
+    body: 'No lens is perfect: chromatic aberration, distortion and vignetting are corrected with special elements and anti-reflective coatings on the surfaces.',
+  },
+];
+
+const SECTIONS_EN: Record<string, AnatomySection[]> = {
+  reflex: REFLEX_SECTIONS_EN,
+  sensor: SENSOR_SECTIONS_EN,
+  optics: OPTICS_SECTIONS_EN,
+};
+
+/** Restituisce le sezioni dell'explainer per la lingua (fallback all'italiano). */
+export function sectionsFor(id: string, locale: Locale): AnatomySection[] {
+  return (locale === 'en' ? SECTIONS_EN[id] : EXPLAINERS[id]?.sections) ?? EXPLAINERS[id]?.sections ?? [];
+}

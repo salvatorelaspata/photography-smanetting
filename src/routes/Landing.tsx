@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useT } from '../i18n';
-import { DEMOS } from '../demos/registry';
+import { DEMOS, REFERENCES } from '../demos/registry';
 import { ConceptCard } from '../ui/ConceptCard';
+import { ConceptIcon } from '../ui/ConceptIcon';
 
 /** Pagina iniziale: presentazione + card per ogni concetto. */
 export function Landing() {
@@ -18,6 +19,19 @@ export function Landing() {
       <div className="cards">
         {DEMOS.map((d) => (
           <ConceptCard key={d.id} demo={d} />
+        ))}
+
+        {REFERENCES.map((r) => (
+          <Link key={r.id} to={`/c/${r.id}`} className="card-link">
+            <article className="concept-card">
+              <div className="concept-card__icon">
+                <ConceptIcon id={r.id} />
+              </div>
+              <h3 className="concept-card__title">{t(r.titleKey)}</h3>
+              <p className="concept-card__blurb">{t(`card.${r.id}.blurb`)}</p>
+              <span className="concept-card__cta">{t('card.theory')} →</span>
+            </article>
+          </Link>
         ))}
 
         <Link to="/anatomia" className="card-link">

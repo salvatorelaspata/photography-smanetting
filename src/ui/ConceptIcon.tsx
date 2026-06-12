@@ -71,6 +71,100 @@ export function ConceptIcon({ id }: { id: string }) {
           <rect x={18} y={19} width={12} height={10} rx={1} />
         </svg>
       );
+    case 'diffraction':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <path d="M9 36 Q24 9 39 36" />
+          <circle cx={24} cy={15} r={2.6} fill="currentColor" stroke="none" />
+        </svg>
+      );
+    case 'portrait':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <circle cx={24} cy={21} r={12} />
+          <circle cx={24} cy={23} r={3.2} fill="currentColor" stroke="none" />
+        </svg>
+      );
+    case 'hyperfocal':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <line x1={7} y1={31} x2={42} y2={31} />
+          <rect x={18} y={22} width={24} height={9} rx={2} fill="currentColor" stroke="none" opacity={0.5} />
+          <line x1={18} y1={18} x2={18} y2={34} />
+        </svg>
+      );
+    case 'metering':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <rect x={9} y={12} width={30} height={24} rx={2} />
+          <circle cx={24} cy={24} r={4.5} fill="currentColor" stroke="none" />
+        </svg>
+      );
+    case 'stabilization':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <circle cx={24} cy={24} r={7} fill="currentColor" stroke="none" />
+          <path d="M9 16 Q24 8 39 16" />
+          <path d="M9 32 Q24 40 39 32" />
+        </svg>
+      );
+    case 'flash':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="currentColor" stroke="none">
+          <polygon points="27,7 15,27 23,27 20,41 33,20 25,20" />
+        </svg>
+      );
+    case 'bracketing':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <rect x={9} y={13} width={22} height={17} rx={2} />
+          <rect x={14} y={18} width={22} height={17} rx={2} />
+        </svg>
+      );
+    case 'filters':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <circle cx={24} cy={24} r={15} />
+          <path d="M13 24 a11 11 0 0 1 22 0" fill="currentColor" stroke="none" opacity={0.4} />
+          <line x1={9} y1={24} x2={39} y2={24} />
+        </svg>
+      );
+    case 'modes':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <circle cx={24} cy={24} r={15} />
+          <line x1={24} y1={24} x2={24} y2={11} />
+          <circle cx={24} cy={24} r={2.4} fill="currentColor" stroke="none" />
+          {[0, 1, 2, 3].map((i) => {
+            const a = (-Math.PI / 2) + (i * Math.PI) / 2;
+            return <circle key={i} cx={24 + Math.cos(a) * 15} cy={24 + Math.sin(a) * 15} r={1.8} fill="currentColor" stroke="none" />;
+          })}
+        </svg>
+      );
+    case 'raw':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <rect x={9} y={13} width={30} height={22} rx={2} />
+          <path d="M9 24 h30" />
+          <path d="M14 30 h6 M24 30 h4 M31 30 h4" />
+        </svg>
+      );
+    case 'dynamic':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <rect x={11} y={11} width={26} height={26} rx={2} />
+          <path d="M11 37 L37 11" fill="none" />
+          <path d="M11 37 L37 37 L37 11 Z" fill="currentColor" stroke="none" opacity={0.25} />
+        </svg>
+      );
+    case 'colorSpace':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <polygon points="24,8 40,34 8,34" />
+          <polygon points="18,16 38,30 12,30" opacity={0.55} />
+          <circle cx={24} cy={26} r={2.4} fill="currentColor" stroke="none" />
+        </svg>
+      );
     default:
       return (
         <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>

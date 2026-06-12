@@ -622,6 +622,12 @@ code {
   stroke: var(--accent);
   stroke-width: 2;
 }
+.meter__zone {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-dasharray: 5 5;
+}
 
 /* ---------- Navigazione: topbar, landing, card, teoria ---------- */
 
