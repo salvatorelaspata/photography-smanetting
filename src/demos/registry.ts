@@ -4,6 +4,7 @@ import { apertureDemo } from './aperture';
 import { isoDemo } from './iso';
 import { focalDemo } from './focal';
 import { exposureTriangleDemo } from './exposure-triangle';
+import { compositionDemo } from './composition';
 import { histogramDemo } from './histogram';
 import { whiteBalanceDemo } from './white-balance';
 import { panningDemo } from './panning';
@@ -27,6 +28,7 @@ export const DEMOS: DemoModule[] = [
   isoDemo,
   focalDemo,
   exposureTriangleDemo,
+  compositionDemo,
   histogramDemo,
   whiteBalanceDemo,
   panningDemo,

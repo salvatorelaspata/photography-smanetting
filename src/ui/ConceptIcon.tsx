@@ -157,6 +157,17 @@ export function ConceptIcon({ id }: { id: string }) {
           <path d="M11 37 L37 37 L37 11 Z" fill="currentColor" stroke="none" opacity={0.25} />
         </svg>
       );
+    case 'composition':
+      return (
+        <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+          <rect x={8} y={12} width={32} height={24} rx={2} />
+          <line x1={18.7} y1={12} x2={18.7} y2={36} strokeWidth={1.2} />
+          <line x1={29.3} y1={12} x2={29.3} y2={36} strokeWidth={1.2} />
+          <line x1={8} y1={20} x2={40} y2={20} strokeWidth={1.2} />
+          <line x1={8} y1={28} x2={40} y2={28} strokeWidth={1.2} />
+          <circle cx={29.3} cy={20} r={3} fill="currentColor" stroke="none" />
+        </svg>
+      );
     case 'colorSpace':
       return (
         <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>

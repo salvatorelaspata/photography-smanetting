@@ -789,6 +789,49 @@ code {
   border-radius: 8px;
   font-size: 0.9rem;
 }
+.theory__tip {
+  display: flex;
+  gap: 0.6rem;
+  align-items: baseline;
+  margin: 0.9rem 0 0;
+  padding: 0.7rem 0.9rem;
+  background: color-mix(in srgb, var(--accent) 8%, transparent);
+  border-left: 3px solid var(--accent);
+  border-radius: 8px;
+  color: var(--ink);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+.theory__tip-label {
+  flex: none;
+  font-weight: 700;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding-top: 0.1rem;
+}
+.theory__figure {
+  margin: 1rem 0 0;
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--bg) 55%, black);
+}
+.fig__svg {
+  display: block;
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  margin: 0 auto;
+}
+.theory__figcap {
+  margin: 0.6rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  text-align: center;
+  line-height: 1.4;
+}
 
 /* ---------- Engine 2.5D a livelli ---------- */
 .scene--layered {

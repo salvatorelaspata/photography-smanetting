@@ -1,7 +1,10 @@
 import type { TheoryBlock } from '../content/theory';
+import { useT } from '../i18n';
+import { TheoryFigure } from './TheoryFigure';
 
-/** Rende i blocchi di teoria approfondita di un concetto. */
+/** Rende i blocchi di teoria approfondita di un concetto (con tip e figure). */
 export function TheorySection({ blocks }: { blocks: TheoryBlock[] }) {
+  const t = useT();
   return (
     <div className="theory">
       {blocks.map((b, i) => (
@@ -23,6 +26,13 @@ export function TheorySection({ blocks }: { blocks: TheoryBlock[] }) {
             <p className="theory__formula">
               <code>{b.formula}</code>
             </p>
+          )}
+          {b.figure && <TheoryFigure id={b.figure} />}
+          {b.tip && (
+            <aside className="theory__tip">
+              <span className="theory__tip-label">{t('theory.tip')}</span>
+              <span>{b.tip}</span>
+            </aside>
           )}
         </section>
       ))}

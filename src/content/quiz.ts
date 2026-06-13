@@ -35,6 +35,11 @@ export const QUIZ: Record<string, QuizQuestion> = {
     options: ['accorci il tempo di 1 stop', 'allunghi il tempo di 1 stop', 'alzi l’ISO di 1 stop'],
     answer: 0,
   },
+  composition: {
+    q: 'La regola dei terzi suggerisce di mettere il soggetto…',
+    options: ['al centro esatto', 'su una linea o intersezione della griglia', 'sempre in basso'],
+    answer: 1,
+  },
   histogram: {
     q: 'Le alte luci “bruciate” (clipping a destra) sono…',
     options: ['recuperabili in post', 'irrecuperabili', 'sempre un errore da evitare'],
@@ -90,6 +95,31 @@ export const QUIZ: Record<string, QuizQuestion> = {
     options: ['ridurre il rumore', 'coprire una gamma dinamica più ampia', 'aumentare la nitidezza'],
     answer: 1,
   },
+  filters: {
+    q: 'Per ottenere “acqua setosa” in pieno giorno serve…',
+    options: ['un polarizzatore', 'un filtro ND', 'un ISO più alto'],
+    answer: 1,
+  },
+  modes: {
+    q: 'In Priorità diaframmi (A) tu imposti…',
+    options: ['il tempo', 'l’apertura', 'niente, fa tutto la camera'],
+    answer: 1,
+  },
+  raw: {
+    q: 'Quale formato recupera meglio le ombre spinte in post?',
+    options: ['JPEG', 'RAW', 'sono identici'],
+    answer: 1,
+  },
+  dynamic: {
+    q: 'Se la scena supera la gamma dinamica del sensore…',
+    options: ['aumenta la nitidezza', 'bruci le alte luci o chiudi le ombre', 'cambia il bilanciamento'],
+    answer: 1,
+  },
+  colorSpace: {
+    q: 'Per pubblicare una foto sul web conviene esportare in…',
+    options: ['ProPhoto RGB', 'sRGB', 'Adobe RGB'],
+    answer: 1,
+  },
 };
 
 const QUIZ_EN: Record<string, QuizQuestion> = {
@@ -117,6 +147,11 @@ const QUIZ_EN: Record<string, QuizQuestion> = {
     q: 'You open the aperture by 1 stop: to keep the exposure…',
     options: ['shorten the shutter by 1 stop', 'lengthen the shutter by 1 stop', 'raise ISO by 1 stop'],
     answer: 0,
+  },
+  composition: {
+    q: 'The rule of thirds suggests placing the subject…',
+    options: ['dead centre', 'on a grid line or intersection', 'always at the bottom'],
+    answer: 1,
   },
   histogram: {
     q: 'Blown highlights (clipping on the right) are…',
@@ -171,6 +206,31 @@ const QUIZ_EN: Record<string, QuizQuestion> = {
   bracketing: {
     q: 'Bracketing is used to…',
     options: ['reduce noise', 'cover a wider dynamic range', 'increase sharpness'],
+    answer: 1,
+  },
+  filters: {
+    q: 'For “silky water” in broad daylight you need…',
+    options: ['a polariser', 'an ND filter', 'a higher ISO'],
+    answer: 1,
+  },
+  modes: {
+    q: 'In Aperture priority (A) you set…',
+    options: ['the shutter', 'the aperture', 'nothing, the camera does it all'],
+    answer: 1,
+  },
+  raw: {
+    q: 'Which format recovers heavily pushed shadows better in post?',
+    options: ['JPEG', 'RAW', 'they are identical'],
+    answer: 1,
+  },
+  dynamic: {
+    q: 'If the scene exceeds the sensor’s dynamic range…',
+    options: ['sharpness increases', 'you blow highlights or crush shadows', 'the white balance shifts'],
+    answer: 1,
+  },
+  colorSpace: {
+    q: 'To publish a photo on the web you should export in…',
+    options: ['ProPhoto RGB', 'sRGB', 'Adobe RGB'],
     answer: 1,
   },
 };
