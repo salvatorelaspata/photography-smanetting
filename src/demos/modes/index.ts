@@ -35,7 +35,7 @@ export const modesDemo: DemoModule = {
   controls: [
     {
       id: 'mode',
-      kind: 'dial',
+      kind: 'segment',
       labelKey: 'demo.modes.ctrl.mode',
       sequence: [0, 1, 2, 3],
       format: (v) => MODES[Math.round(v)] ?? '',
@@ -56,8 +56,7 @@ export const modesDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: ModesScene },
-  fallback: 'schematic',
+  scene: ModesScene,
   presets: {
     program: { labelKey: 'demo.modes.preset.program', values: { mode: 0 } },
     aperture: { labelKey: 'demo.modes.preset.aperture', values: { mode: 1, aperture: 2.8 } },

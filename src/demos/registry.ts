@@ -62,3 +62,24 @@ export const REFERENCES: RefConcept[] = [{ id: 'colorSpace', titleKey: 'demo.col
 export function getReference(id: string): RefConcept | undefined {
   return REFERENCES.find((r) => r.id === id);
 }
+
+export interface PathEntry {
+  id: string;
+  titleKey: string;
+}
+
+/** Ordine del percorso didattico per la navigazione prev/next: demo + approfondimenti. */
+export const PATH: PathEntry[] = [
+  ...DEMOS.map((d) => ({ id: d.id, titleKey: d.titleKey })),
+  ...REFERENCES.map((r) => ({ id: r.id, titleKey: r.titleKey })),
+];
+
+/** Concetto precedente/successivo nel percorso, per la navigazione a fondo pagina. */
+export function pathNeighbors(id: string): { prev: PathEntry | null; next: PathEntry | null } {
+  const i = PATH.findIndex((p) => p.id === id);
+  if (i < 0) return { prev: null, next: null };
+  return {
+    prev: i > 0 ? PATH[i - 1] : null,
+    next: i < PATH.length - 1 ? PATH[i + 1] : null,
+  };
+}

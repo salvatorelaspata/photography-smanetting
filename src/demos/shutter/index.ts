@@ -4,8 +4,6 @@ import { computeExposure } from '../../core/photography/exposure';
 import { computeMotion } from '../../core/photography/motion';
 import { SHUTTER_FULL_SECONDS, formatShutter } from '../../core/params/stops';
 import { ShutterScene } from '../../engines/schematic/ShutterScene';
-import { ShutterThree } from '../../engines/three';
-import { ShutterLayered } from '../../engines/layered/ShutterLayered';
 
 function computeDerived(p: ParamValues): DerivedPhysics {
   return {
@@ -47,8 +45,7 @@ export const shutterDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: ShutterScene, three: ShutterThree, layered: ShutterLayered },
-  fallback: 'schematic',
+  scene: ShutterScene,
   presets: {
     freeze: {
       labelKey: 'demo.shutter.preset.freeze',

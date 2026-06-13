@@ -41,8 +41,7 @@ export const panningDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: PanningScene },
-  fallback: 'schematic',
+  scene: PanningScene,
   presets: {
     subtle: { labelKey: 'demo.panning.preset.subtle', values: { shutterSeconds: 1 / 125, subjectSpeed: 1800 } },
     classic: { labelKey: 'demo.panning.preset.classic', values: { shutterSeconds: 1 / 30, subjectSpeed: 2400 } },

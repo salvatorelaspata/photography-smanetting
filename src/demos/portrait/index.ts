@@ -27,8 +27,7 @@ export const portraitDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: PortraitScene },
-  fallback: 'schematic',
+  scene: PortraitScene,
   presets: {
     close: { labelKey: 'demo.portrait.preset.close', values: { distanceM: 0.4 } },
     portrait: { labelKey: 'demo.portrait.preset.portrait', values: { distanceM: 1.5 } },

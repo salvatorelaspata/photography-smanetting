@@ -26,8 +26,7 @@ export const diffractionDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: DiffractionScene },
-  fallback: 'schematic',
+  scene: DiffractionScene,
   presets: {
     wide: { labelKey: 'demo.diffraction.preset.wide', values: { apertureFstop: 2.8 } },
     sweet: { labelKey: 'demo.diffraction.preset.sweet', values: { apertureFstop: 8 } },

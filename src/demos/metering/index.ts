@@ -18,15 +18,14 @@ export const meteringDemo: DemoModule = {
   controls: [
     {
       id: 'meteringMode',
-      kind: 'dial',
+      kind: 'segment',
       labelKey: 'demo.metering.ctrl.mode',
       sequence: [0, 1, 2],
-      format: (v) => ['Spot', 'Center', 'Matrix'][Math.round(v)] ?? '',
+      format: (v) => ['Spot', 'Centro', 'Matrix'][Math.round(v)] ?? '',
     },
   ],
   computeDerived,
-  renderers: { schematic: MeteringScene },
-  fallback: 'schematic',
+  scene: MeteringScene,
   presets: {
     spot: { labelKey: 'demo.metering.preset.spot', values: { meteringMode: 0 } },
     center: { labelKey: 'demo.metering.preset.center', values: { meteringMode: 1 } },

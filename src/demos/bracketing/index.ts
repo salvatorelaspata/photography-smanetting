@@ -27,8 +27,7 @@ export const bracketingDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: BracketingScene },
-  fallback: 'schematic',
+  scene: BracketingScene,
   presets: {
     single: { labelKey: 'demo.bracketing.preset.single', values: { evStep: 0 } },
     moderate: { labelKey: 'demo.bracketing.preset.moderate', values: { evStep: 1.5 } },

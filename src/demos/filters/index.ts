@@ -18,10 +18,10 @@ export const filtersDemo: DemoModule = {
   controls: [
     {
       id: 'filter',
-      kind: 'dial',
+      kind: 'segment',
       labelKey: 'demo.filters.ctrl.type',
       sequence: [0, 1, 2],
-      format: (v) => ['—', 'ND', 'CPL'][Math.round(v)] ?? '',
+      format: (v) => ['Nessuno', 'ND', 'CPL'][Math.round(v)] ?? '',
     },
     {
       id: 'strength',
@@ -34,8 +34,7 @@ export const filtersDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: FiltersScene },
-  fallback: 'schematic',
+  scene: FiltersScene,
   presets: {
     none: { labelKey: 'demo.filters.preset.none', values: { filter: 0, strength: 0 } },
     nd: { labelKey: 'demo.filters.preset.nd', values: { filter: 1, strength: 0.8 } },

@@ -43,8 +43,7 @@ export const hyperfocalDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: HyperfocalScene },
-  fallback: 'schematic',
+  scene: HyperfocalScene,
   presets: {
     near: { labelKey: 'demo.hyperfocal.preset.near', values: { focusDistanceM: 2 } },
     hyperfocal: { labelKey: 'demo.hyperfocal.preset.hyperfocal', values: { apertureFstop: 8, focusDistanceM: 5.5 } },

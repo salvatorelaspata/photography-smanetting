@@ -29,8 +29,7 @@ export const whiteBalanceDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: WhiteBalanceScene },
-  fallback: 'schematic',
+  scene: WhiteBalanceScene,
   presets: {
     candle: { labelKey: 'demo.wb.preset.candle', values: { kelvin: 2800 } },
     daylight: { labelKey: 'demo.wb.preset.daylight', values: { kelvin: 5500 } },

@@ -16,6 +16,25 @@ export function Landing() {
         <p className="hero__lead">{t('landing.lead')}</p>
       </section>
 
+      {/* Punto di partenza in evidenza: l'anatomia della fotocamera. */}
+      <Link to="/anatomia" className="card-link card-link--feature">
+        <article className="concept-card concept-card--feature">
+          <div className="concept-card__icon" aria-hidden="true">
+            <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
+              <rect x={10} y={16} width={28} height={18} rx={3} />
+              <circle cx={24} cy={25} r={6} />
+              <path d="M18 16 L21 11 L27 11 L30 16" />
+            </svg>
+          </div>
+          <div className="concept-card__main">
+            <span className="concept-card__eyebrow">{t('landing.anatomy.start')}</span>
+            <h3 className="concept-card__title">{t('landing.anatomy.title')}</h3>
+            <p className="concept-card__blurb">{t('landing.anatomy.blurb')}</p>
+          </div>
+          <span className="concept-card__cta">{t('card.open')} →</span>
+        </article>
+      </Link>
+
       <div className="cards">
         {DEMOS.map((d) => (
           <ConceptCard key={d.id} demo={d} />
@@ -33,21 +52,6 @@ export function Landing() {
             </article>
           </Link>
         ))}
-
-        <Link to="/anatomia" className="card-link">
-          <article className="concept-card concept-card--feature">
-            <div className="concept-card__icon" aria-hidden="true">
-              <svg className="cicon" viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth={2}>
-                <rect x={10} y={16} width={28} height={18} rx={3} />
-                <circle cx={24} cy={25} r={6} />
-                <path d="M18 16 L21 11 L27 11 L30 16" />
-              </svg>
-            </div>
-            <h3 className="concept-card__title">{t('landing.anatomy.title')}</h3>
-            <p className="concept-card__blurb">{t('landing.anatomy.blurb')}</p>
-            <span className="concept-card__cta">{t('card.open')} →</span>
-          </article>
-        </Link>
       </div>
     </div>
   );

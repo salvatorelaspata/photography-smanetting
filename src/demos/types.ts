@@ -1,17 +1,20 @@
 /**
- * Contratto di una demo interattiva: parametri, controlli, fisica, renderer per engine.
+ * Contratto di una demo interattiva: parametri, controlli, fisica, scena schematica.
  * Riferimento: docs/REQUISITI.md §3.3 e §6.3.
  */
-import type { RenderingApproach } from '../types';
 import type { DerivedPhysics, ParamValues, RendererComponent } from '../engines/types';
 
 export type { ParamValues };
 
-/** Descrizione dichiarativa di un controllo (genera Slider o Dial). */
+/**
+ * Descrizione dichiarativa di un controllo.
+ * - `dial`/`slider`: valori ordinati (stop di tempo, diaframma, ISO, focale…).
+ * - `segment`: scelta categoriale a pulsanti (sensore, filtro, modalità, formato…).
+ */
 export interface ControlSpec {
   /** Chiave del parametro in `params`. */
   id: string;
-  kind: 'slider' | 'dial';
+  kind: 'slider' | 'dial' | 'segment';
   labelKey: string;
   /** Se presente, il controllo si muove su questi valori discreti (stop). */
   sequence?: readonly number[];
@@ -39,10 +42,8 @@ export interface DemoModule {
   defaultParams: ParamValues;
   controls: ControlSpec[];
   computeDerived: (p: ParamValues) => DerivedPhysics;
-  /** Un renderer per engine supportato (matrice di supporto). */
-  renderers: Partial<Record<RenderingApproach, RendererComponent>>;
-  /** Engine usato se quello selezionato non è supportato. */
-  fallback: RenderingApproach;
+  /** Scena schematica (SVG) della demo. */
+  scene: RendererComponent;
   presets?: Record<string, DemoPreset>;
   lesson: { introKey: string; pointKeys: string[] };
 }

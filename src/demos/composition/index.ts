@@ -36,15 +36,14 @@ export const compositionDemo: DemoModule = {
     },
     {
       id: 'guide',
-      kind: 'dial',
+      kind: 'segment',
       labelKey: 'demo.composition.ctrl.guide',
       sequence: [0, 1, 2, 3, 4],
       format: (v) => ['—', '1/3', 'φ', '↻', '↗'][Math.round(v)] ?? '',
     },
   ],
   computeDerived,
-  renderers: { schematic: CompositionScene },
-  fallback: 'schematic',
+  scene: CompositionScene,
   presets: {
     center: { labelKey: 'demo.composition.preset.center', values: { subjectX: 0.5, horizonY: 0.5, guide: 1 } },
     thirds: { labelKey: 'demo.composition.preset.thirds', values: { subjectX: 0.667, horizonY: 0.667, guide: 1 } },

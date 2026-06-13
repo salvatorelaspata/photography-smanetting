@@ -2,6 +2,7 @@ import { useT } from '../i18n';
 import type { ControlSpec, DemoModule, ParamValues } from '../demos/types';
 import { Slider } from './Slider';
 import { Dial } from './Dial';
+import { Segment } from './Segment';
 
 interface DemoControlsProps {
   demo: DemoModule;
@@ -25,6 +26,18 @@ export function DemoControls({ demo, params, onChange, onPreset, onReset }: Demo
       {demo.controls.map((c) => {
         const value = params[c.id];
         const d = display(c, value);
+        if (c.kind === 'segment' && c.sequence) {
+          return (
+            <Segment
+              key={c.id}
+              label={t(c.labelKey)}
+              sequence={c.sequence}
+              value={value}
+              format={c.format ?? ((v) => String(v))}
+              onChange={(v) => onChange(c.id, v)}
+            />
+          );
+        }
         if (c.kind === 'dial' && c.sequence) {
           return (
             <Dial

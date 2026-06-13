@@ -7,27 +7,32 @@ impostazione su una scena simulata. Per ogni concetto: **teoria approfondita**, 
 
 ## Cosa c'è dentro
 
-**9 concetti** (teoria + demo interattiva + quiz):
-Tempo di otturazione · Apertura/profondità di campo · ISO/rumore · Distanza focale e
-compressione · Triangolo dell'esposizione · Istogramma & esposizione · Bilanciamento del
-bianco · Panning · Sensore & crop factor.
+**21 concetti** (teoria approfondita + demo interattiva + quiz), dai fondamentali agli
+avanzati: tempo di otturazione, apertura/profondità di campo, ISO/rumore, distanza focale e
+compressione, triangolo dell'esposizione, composizione, istogramma, bilanciamento del bianco,
+panning, sensore/crop factor, diffrazione, ritratto, iperfocale, misurazione, stabilizzazione,
+flash/sync, bracketing/HDR, filtri ND/CPL, modalità P/A/S/M, RAW vs JPEG, gamma dinamica —
+più l'approfondimento **spazi colore**.
 
 **Anatomia 3D scroll-driven** (`/anatomia`): la **reflex**, il **sensore** e le **ottiche**
-si scompongono mentre scorri, con annotazioni componente per componente.
+si scompongono mentre scorri, con annotazioni componente per componente. È il punto di
+partenza consigliato, in evidenza in cima alla home.
 
 **Caratteristiche distintive**
-- **3 approcci di rendering** commutabili a runtime: 3D real-time (Three.js), 2.5D a livelli
-  (filtri SVG), procedurale schematico — con fallback dichiarato per demo.
-- **3 stili visivi** commutabili: realistico, misto, illustrato (palette + materiale 3D +
-  saturazione). La fisica non cambia: gli engine renderizzano gli stessi numeri.
+- **Rendering schematico** (SVG) per tutte le demo: leggero, deterministico e coerente. La
+  scena occupa **tutta la larghezza** disponibile, con i controlli in una barra **sotto**.
+- **Controlli adatti al parametro**: ghiere/slider per i valori ordinati (tempo, diaframma,
+  ISO, focale), **pulsanti** per le scelte categoriali (sensore, filtro, modalità…).
 - **Confronto A/B**: blocca uno stato e confrontalo affiancato con quello corrente.
-- **Deep-link** dei parametri (URL condivisibile) e percorso con navigazione avanti/indietro.
+- **Deep-link** dei parametri (URL condivisibile) e **percorso** con navigazione
+  avanti/indietro (demo + approfondimenti).
 - **Bilingue IT/EN** (con fallback), accessibile (tastiera/ARIA, `prefers-reduced-motion`).
 - SPA **statica**, deployabile su GitHub Pages.
 
 ## Stack
-React + Vite + TypeScript · Three.js (react-three-fiber + postprocessing) · react-router ·
-zustand · Vitest. Core fotografico in funzioni pure testate (`src/core/photography`).
+React + Vite + TypeScript · react-router · zustand · Vitest. Core fotografico in funzioni
+pure testate (`src/core/photography`). Three.js (react-three-fiber + postprocessing) è
+caricato in lazy **solo per l'anatomia 3D**.
 
 ## Sviluppo
 ```bash
@@ -48,12 +53,12 @@ custom o user-site, modificalo lì.
 ```
 src/
 ├─ core/photography/   math pura e testata (exposure, dof, fov, motion, noise, whiteBalance, sensor)
-├─ engines/            schematic/ · layered/ · three/  (+ EngineHost con fallback)
-├─ demos/              un modulo per concetto + registry
+├─ engines/            schematic/ (scene SVG delle demo) · three/ (anatomia 3D) · EngineHost
+├─ demos/              un modulo per concetto + registry (ordine del percorso)
 ├─ content/            theory.ts · anatomy.ts · quiz.ts  (testi)
 ├─ routes/             Landing · ConceptPage · AnatomyIndex · AnatomyExplainer
-├─ ui/                 controlli, pannelli, ScrollExplainer, …
-├─ styles/ · state/ · i18n/   (it.json + en.json)
+├─ ui/                 controlli (Slider, Dial, Segment), pannelli, ScrollExplainer, …
+├─ state/ · i18n/      (it.json + en.json)
 ```
 
 ## Documentazione

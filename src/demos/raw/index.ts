@@ -18,7 +18,7 @@ export const rawDemo: DemoModule = {
   controls: [
     {
       id: 'format',
-      kind: 'dial',
+      kind: 'segment',
       labelKey: 'demo.raw.ctrl.format',
       sequence: [0, 1],
       format: (v) => (Math.round(v) === 1 ? 'RAW' : 'JPEG'),
@@ -34,8 +34,7 @@ export const rawDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: RawScene },
-  fallback: 'schematic',
+  scene: RawScene,
   presets: {
     raw: { labelKey: 'demo.raw.preset.raw', values: { format: 1, push: 0.7 } },
     jpeg: { labelKey: 'demo.raw.preset.jpeg', values: { format: 0, push: 0.7 } },

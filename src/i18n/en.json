@@ -3,16 +3,6 @@
   "app.subtitle": "Interactive photography",
   "app.tagline": "Tweak the settings and watch the effect in real time.",
 
-  "switch.approach.label": "Rendering",
-  "switch.approach.three": "Real-time 3D",
-  "switch.approach.layered": "Layered 2.5D",
-  "switch.approach.schematic": "Schematic",
-
-  "switch.style.label": "Style",
-  "switch.style.realistic": "Realistic",
-  "switch.style.mixed": "Mixed",
-  "switch.style.schematic": "Illustrated",
-
   "switch.locale.label": "Language",
 
   "demos.nav.label": "Concepts",
@@ -35,6 +25,7 @@
   "landing.lead": "Pick a concept: each one comes with an in-depth explanation and an interactive demo where you move the parameters and see the effect in real time.",
   "landing.anatomy.title": "Camera anatomy",
   "landing.anatomy.blurb": "The DSLR taken apart in 3D, on scroll, component by component.",
+  "landing.anatomy.start": "Start here",
   "landing.soon": "Coming soon",
 
   "anatomy.scrollHint": "scroll to explore",
@@ -71,8 +62,6 @@
   "card.raw.blurb": "RAW or JPEG: how much you can recover shadows and highlights in post.",
   "card.dynamic.blurb": "How many stops the sensor captures and what bit depth means.",
   "card.colorSpace.blurb": "sRGB, Adobe RGB, ProPhoto: which colours an image can hold.",
-
-  "engine.fallback": "{from} isn't ready for this demo yet → shown in the {to} version.",
 
   "demo.tryThis": "Try this",
   "demo.reset": "Reset",
@@ -237,6 +226,8 @@
   "demo.portrait.lesson.p3": "To fill the frame from afar you need a longer focal length.",
   "scene.portrait.focal": "≈ {mm}mm to frame",
   "scene.portrait.warn": "DISTORTION",
+  "scene.portrait.natural": "NATURAL",
+  "scene.portrait.flat": "FLAT",
 
   "demo.hyperfocal.title": "Hyperfocal and zone focusing",
   "demo.hyperfocal.ctrl.fstop": "Aperture",
@@ -287,6 +278,8 @@
   "demo.flash.lesson.p3": "To go faster you need High-Speed Sync (HSS).",
   "scene.flash.sync": "sync {sync}",
   "scene.flash.band": "BLACK BAND",
+  "scene.flash.lit": "FULLY LIT",
+  "scene.flash.curtain": "2nd curtain",
 
   "demo.bracketing.title": "Bracketing / HDR",
   "demo.bracketing.ctrl.step": "Spacing (EV)",

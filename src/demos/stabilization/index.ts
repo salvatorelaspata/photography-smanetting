@@ -42,8 +42,7 @@ export const stabilizationDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: StabilizationScene },
-  fallback: 'schematic',
+  scene: StabilizationScene,
   presets: {
     handheld: { labelKey: 'demo.stabilization.preset.handheld', values: { focalLengthMm: 200, shutterSeconds: 1 / 60, isStops: 0 } },
     stabilized: { labelKey: 'demo.stabilization.preset.stabilized', values: { focalLengthMm: 200, shutterSeconds: 1 / 60, isStops: 4 } },

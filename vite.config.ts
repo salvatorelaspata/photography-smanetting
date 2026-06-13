@@ -5,6 +5,8 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => ({
   base: mode === 'production' ? '/photography-smanetting/' : '/',
   plugins: [react()],
+  // Rispetta la porta assegnata dall'ambiente (es. anteprima), altrimenti usa il default Vite.
+  server: process.env.PORT ? { port: Number(process.env.PORT), strictPort: true } : undefined,
   // three.js è in un chunk lazy (caricato solo per 3D/anatomia): alziamo la soglia di avviso.
   build: { chunkSizeWarningLimit: 1000 },
   test: {

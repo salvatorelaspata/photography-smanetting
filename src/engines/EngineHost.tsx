@@ -1,4 +1,3 @@
-import { useAppStore } from '../state/store';
 import { useT } from '../i18n';
 import type { DemoModule } from '../demos/types';
 import type { DerivedPhysics, ParamValues } from './types';
@@ -11,15 +10,10 @@ interface EngineHostProps {
   onToggleAnimate: () => void;
 }
 
-/** Risolve l'engine selezionato per la demo, con fallback dichiarato e badge. */
+/** Monta la scena schematica della demo, con il toggle play/pausa per le scene animate. */
 export function EngineHost({ demo, params, derived, animate, onToggleAnimate }: EngineHostProps) {
   const t = useT();
-  const approach = useAppStore((s) => s.approach);
-  const style = useAppStore((s) => s.style);
-
-  const Renderer = demo.renderers[approach] ?? demo.renderers[demo.fallback];
-  const fellBack = !demo.renderers[approach];
-  const size = { width: 640, height: 400 };
+  const Scene = demo.scene;
 
   return (
     <div className="stage">
@@ -34,19 +28,7 @@ export function EngineHost({ demo, params, derived, animate, onToggleAnimate }: 
           {animate ? '⏸' : '▶'}
         </button>
       )}
-      {Renderer ? (
-        <Renderer params={params} derived={derived} style={style} size={size} animate={animate} />
-      ) : (
-        <div className="stage__empty">—</div>
-      )}
-      {fellBack && (
-        <div className="stage__badge" role="status">
-          {t('engine.fallback', {
-            from: t(`switch.approach.${approach}`),
-            to: t(`switch.approach.${demo.fallback}`),
-          })}
-        </div>
-      )}
+      <Scene params={params} derived={derived} animate={animate} />
     </div>
   );
 }

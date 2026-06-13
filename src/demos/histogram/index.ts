@@ -28,8 +28,7 @@ export const histogramDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: HistogramScene },
-  fallback: 'schematic',
+  scene: HistogramScene,
   presets: {
     under: { labelKey: 'demo.hist.preset.under', values: { exposureComp: -2 } },
     correct: { labelKey: 'demo.hist.preset.correct', values: { exposureComp: 0 } },

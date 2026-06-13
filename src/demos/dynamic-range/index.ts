@@ -27,15 +27,14 @@ export const dynamicRangeDemo: DemoModule = {
     },
     {
       id: 'bits',
-      kind: 'dial',
+      kind: 'segment',
       labelKey: 'demo.dynamic.ctrl.bits',
       sequence: [8, 10, 12, 14],
       format: (v) => `${Math.round(v)} bit`,
     },
   ],
   computeDerived,
-  renderers: { schematic: DynamicRangeScene },
-  fallback: 'schematic',
+  scene: DynamicRangeScene,
   presets: {
     low: { labelKey: 'demo.dynamic.preset.low', values: { sceneDr: 8, bits: 14 } },
     high: { labelKey: 'demo.dynamic.preset.high', values: { sceneDr: 16, bits: 14 } },

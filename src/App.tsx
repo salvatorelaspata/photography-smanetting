@@ -1,7 +1,6 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import { I18nProvider } from './i18n';
-import { useAppStore } from './state/store';
 import { Layout } from './ui/Layout';
 import { Landing } from './routes/Landing';
 import { ConceptPage } from './routes/ConceptPage';
@@ -11,13 +10,6 @@ import { AnatomyIndex } from './routes/AnatomyIndex';
 const AnatomyExplainer = lazy(() => import('./routes/AnatomyExplainer'));
 
 export function App() {
-  const style = useAppStore((s) => s.style);
-
-  // Lo stile visivo guida i token CSS via attributo data-style su <html>.
-  useEffect(() => {
-    document.documentElement.dataset.style = style;
-  }, [style]);
-
   return (
     <I18nProvider>
       <HashRouter>

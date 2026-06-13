@@ -26,8 +26,7 @@ export const flashDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: FlashSyncScene },
-  fallback: 'schematic',
+  scene: FlashSyncScene,
   presets: {
     safe: { labelKey: 'demo.flash.preset.safe', values: { shutterSeconds: 1 / 60 } },
     sync: { labelKey: 'demo.flash.preset.sync', values: { shutterSeconds: 1 / 250 } },

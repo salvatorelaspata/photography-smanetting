@@ -3,16 +3,6 @@
   "app.subtitle": "Fotografia interattiva",
   "app.tagline": "Smanetta con i parametri e guarda l'effetto in tempo reale.",
 
-  "switch.approach.label": "Rendering",
-  "switch.approach.three": "3D real-time",
-  "switch.approach.layered": "2.5D a livelli",
-  "switch.approach.schematic": "Schematico",
-
-  "switch.style.label": "Stile",
-  "switch.style.realistic": "Realistico",
-  "switch.style.mixed": "Misto",
-  "switch.style.schematic": "Illustrato",
-
   "switch.locale.label": "Lingua",
 
   "demos.nav.label": "Concetti",
@@ -35,6 +25,7 @@
   "landing.lead": "Scegli un concetto: per ognuno trovi una spiegazione approfondita e una demo interattiva in cui muovi i parametri e vedi l'effetto in tempo reale.",
   "landing.anatomy.title": "Anatomia della fotocamera",
   "landing.anatomy.blurb": "La reflex scomposta in 3D, allo scroll, componente per componente.",
+  "landing.anatomy.start": "Inizia da qui",
   "landing.soon": "In arrivo",
 
   "anatomy.scrollHint": "scorri per esplorare",
@@ -71,8 +62,6 @@
   "card.raw.blurb": "RAW o JPEG: quanto puoi recuperare ombre e alte luci in post-produzione.",
   "card.dynamic.blurb": "Quanti stop cattura il sensore e cosa significano i bit di profondità.",
   "card.colorSpace.blurb": "sRGB, Adobe RGB, ProPhoto: quali colori può contenere un'immagine.",
-
-  "engine.fallback": "{from} non è ancora pronto per questa demo → la vedi in versione {to}.",
 
   "demo.tryThis": "Prova questo",
   "demo.reset": "Reimposta",
@@ -237,6 +226,8 @@
   "demo.portrait.lesson.p3": "Per riempire l'inquadratura da lontano serve una focale più lunga.",
   "scene.portrait.focal": "≈ {mm}mm per inquadrare",
   "scene.portrait.warn": "DISTORSIONE",
+  "scene.portrait.natural": "NATURALE",
+  "scene.portrait.flat": "PIATTO",
 
   "demo.hyperfocal.title": "Iperfocale e zone focusing",
   "demo.hyperfocal.ctrl.fstop": "Diaframma",
@@ -287,6 +278,8 @@
   "demo.flash.lesson.p3": "Per andare più veloci serve l'High-Speed Sync (HSS).",
   "scene.flash.sync": "sync {sync}",
   "scene.flash.band": "BANDA NERA",
+  "scene.flash.lit": "TUTTO ILLUMINATO",
+  "scene.flash.curtain": "2ª tendina",
 
   "demo.bracketing.title": "Bracketing / HDR",
   "demo.bracketing.ctrl.step": "Spaziatura (EV)",

@@ -194,31 +194,38 @@ Eseguire **M0** (scaffolding) e l'inizio di **M1** (core `exposure.ts` + test), 
 
 ---
 
-## Avanzamento (giugno 2026) e piano residuo
+## Avanzamento (giugno 2026)
 
-**Completato:** core fotografico testato; **5 concetti core** (teoria approfondita + demo
-interattiva); **3 engine** commutabili a runtime (schematico, 3D/R3F, 2.5D via filtri SVG);
-**3 stili** commutabili (palette + materiale 3D + saturazione); **navigazione** (landing a card
-+ routing + dettaglio teoria-prima); **M8/An1** anatomia reflex 3D scroll-driven.
+**Completato:** core fotografico testato; **21 concetti** (teoria approfondita + demo
+interattiva + quiz) più l'approfondimento *spazi colore*; **anatomia 3D scroll-driven**
+(reflex, sensore, ottiche); **navigazione** completa (home a card con anatomia in evidenza
+come punto di partenza, percorso avanti/indietro che include gli approfondimenti, confronto
+A/B, deep-link dei parametri); **bilingue IT/EN**; build statica con CI + deploy GitHub Pages.
 
-**Piano residuo, in ordine:**
+### Aggiornamento architetturale (giugno 2026) — consolidamento sullo schematico
 
-### Fase A — Completare l'anatomia (M8)
-- **A1** Framework explainer generico (riuso scroll/sezioni/parti 3D) + indice anatomia + route `/anatomia/:id`.
-- **A2** An2 **Sensore**: fotositi, filtro di Bayer, microlenti, gain↔ISO, dimensioni/crop.
-- **A3** An3 **Ottiche**: elementi/gruppi, messa a fuoco, diaframma, aberrazioni.
+Il doppio switch a 3 vie *approccio di rendering × stile visivo* (impostato in origine in
+§6.3–§6.4 dei requisiti) è stato **consolidato sul solo rendering schematico** (SVG): gli
+engine 3D/2.5D **delle demo** erano incompleti e poco intuitivi, mentre lo schematico è
+completo, leggero e didatticamente più chiaro. Di conseguenza:
 
-### Fase B — Concetti aggiuntivi (M7)
-- **B1** Bilanciamento del bianco (+ rifinire `computeWhiteBalance`).
-- **B2** Esposizione & istogramma / metering (clipping, zone).
-- **B3** Panning (variante della demo otturatore).
-- **B4** Dimensione sensore / crop factor (collega focale↔DoF).
-- **B5** Rifinire i modelli provvisori (`noise` shot/read, `motion` più fisico).
+- rimossi gli engine `three/` e `layered/` **delle demo** e il selettore di rendering; ogni
+  `DemoModule` espone ora una singola `scene`. **Three.js resta solo** per gli explainer di
+  anatomia (scroll-driven), che non sono mai stati parte dei 3 approcci commutabili.
+- rimosso lo switch di **stile visivo** e i relativi token (cartella `styles/` eliminata):
+  `SceneProps` non porta più `style`/`size`.
+- layout demo: la scena occupa **tutta la larghezza** disponibile con i **controlli in una
+  barra sotto**, anche su desktop.
+- i controlli **categoriali** (sensore, filtro, modalità, formato, bit, tipo di griglia) usano
+  ora **pulsanti** (`ui/Segment`); restano ghiere/slider per i valori ordinati (tempo,
+  diaframma, ISO, focale).
+- il percorso prev/next unifica demo **e** approfondimenti (es. *gamma dinamica → spazi colore*).
 
-### Fase C — Percorso didattico & UX (M9)
-- **C1** Confronto A/B. **C2** Navigazione del percorso (avanti/indietro, indice progressivo).
-- **C3** Preset curati + deep-link condivisibile. **C4** (opz.) micro-quiz di comprensione.
+> Conseguenza per i requisiti: le matrici demo×engine e approccio×stile (§6.4, §7) e i
+> requisiti **RF-4/RF-5** valgono ora come **storico**. Il piano M0–M10 qui sopra è mantenuto
+> come traccia di come ci siamo arrivati.
 
-### Fase D — Rifinitura & release (M10)
-- **D1** Accessibilità completa (tastiera/ARIA/contrasto/focus). **D2** Performance e budget bundle.
-- **D3** i18n review (+ EN predisposto). **D4** Meta/SEO/OG, favicon, README utente, deploy Pages.
+### Possibili evoluzioni
+Vedi §11 dei requisiti (mirino unico, gamification, caricamento di una propria foto, lingue
+aggiuntive). Sul rendering, gli engine 3D/2.5D delle demo restano nello storico git e
+potrebbero rientrare se e quando raggiungono una resa all'altezza dello schematico.

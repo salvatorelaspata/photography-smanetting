@@ -23,7 +23,7 @@ export const cropFactorDemo: DemoModule = {
   controls: [
     {
       id: 'sensorIndex',
-      kind: 'dial',
+      kind: 'segment',
       labelKey: 'demo.crop.ctrl.sensor',
       sequence: [0, 1, 2, 3],
       format: (v) => SENSORS[Math.round(v)]?.name ?? '',
@@ -37,8 +37,7 @@ export const cropFactorDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: CropFactorScene },
-  fallback: 'schematic',
+  scene: CropFactorScene,
   presets: {
     ff: { labelKey: 'demo.crop.preset.ff', values: { sensorIndex: 0 } },
     apsc: { labelKey: 'demo.crop.preset.apsc', values: { sensorIndex: 1 } },

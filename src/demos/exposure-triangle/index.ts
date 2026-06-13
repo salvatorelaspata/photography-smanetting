@@ -51,8 +51,7 @@ export const exposureTriangleDemo: DemoModule = {
     },
   ],
   computeDerived,
-  renderers: { schematic: ExposureScene },
-  fallback: 'schematic',
+  scene: ExposureScene,
   presets: {
     blurBg: {
       labelKey: 'demo.triangle.preset.blurBg',

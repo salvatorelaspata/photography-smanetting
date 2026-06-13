@@ -31,6 +31,16 @@ Obiettivi misurabili:
 > ortogonali**, entrambi commutabili a runtime. Non tutte le 9 combinazioni hanno pari senso:
 > vedi §6.4 (matrice di compatibilità) e §7 (matrice di supporto per demo).
 
+> ⚠️ **Aggiornamento di prodotto (giugno 2026) — consolidamento sullo schematico.** Il doppio
+> switch *approccio × stile* è stato in seguito **semplificato sul solo rendering schematico**
+> (SVG): gli engine 3D/2.5D delle demo erano incompleti e poco intuitivi, mentre lo schematico
+> è completo, leggero e più chiaro. Three.js resta **solo** per gli explainer di anatomia (§3.4).
+> Da qui in poi, i riferimenti ai 3 approcci, ai 3 stili e alle relative matrici (RF-4/RF-5,
+> §6.4, §7) vanno letti come **visione iniziale / storico**; lo stato corrente è descritto in
+> [`ROADMAP.md`](./ROADMAP.md) (sezione *Aggiornamento architetturale*). In più: i controlli
+> categoriali usano **pulsanti** oltre a slider/ghiere, e la scena è a **tutta larghezza** con i
+> controlli **sotto**.
+
 ---
 
 ## 2. Pubblico e contesto d'uso
@@ -75,9 +85,9 @@ Per ogni concetto definiamo: *cosa si impara*, *parametri interattivi*, *cosa mo
 
 Ogni concetto è un **modulo demo** auto-contenuto che espone:
 1. un **modello di parametri** (con range e passi espressi in *stop* dove ha senso);
-2. uno o più **controlli** (slider/ghiera) generati dichiarativamente;
+2. uno o più **controlli** (slider/ghiera per valori ordinati, **pulsanti** per scelte categoriali) generati dichiarativamente;
 3. una **funzione `computeDerived`** che usa il core fisico (§8);
-4. una o più **implementazioni di rendering** (una per engine supportato) + un **fallback**;
+4. una **scena schematica** (SVG) che disegna lo stato corrente *(in origine: una implementazione per engine + fallback)*;
 5. un **testo-lezione** i18n (cosa, perché, "prova questo").
 
 ### 3.4 Anatomia & explainer 3D (scroll-driven) — sensori e ottiche
@@ -107,9 +117,9 @@ con `prefers-reduced-motion` o sugli altri approcci mostra un **diagramma annota
 - **RF-2** I controlli includono **slider** e **ghiere** (dial) rotanti, con valori "fotografici" reali (es. f/2.8, 1/250 s, ISO 400) e snap ai *full/third stop*.
 - **RF-3** Lettura numerica sempre visibile (valore corrente + unità + eventuale equivalente in stop/EV).
 
-### 4.2 Switch globali (i 3 assi commutabili)
-- **RF-4 Approccio di rendering**: l'utente sceglie tra `3D`, `2.5D`, `Schematico`. Il cambio è **a caldo** e mantiene i parametri correnti. Se la demo non supporta l'engine scelto, si usa il **fallback dichiarato** con avviso discreto.
-- **RF-5 Stile visivo**: l'utente sceglie tra `Realistico`, `Misto`, `Schematico`. Cambia la *pelle* (palette, materiali, texture), non la fisica.
+### 4.2 Switch globali
+- **RF-4 Approccio di rendering** — *superato (vedi nota in §1): il rendering è oggi solo schematico, nessun selettore.* ~~l'utente sceglie tra `3D`, `2.5D`, `Schematico`…~~
+- **RF-5 Stile visivo** — *superato (vedi nota in §1): lo switch di stile è stato rimosso.* ~~l'utente sceglie tra `Realistico`, `Misto`, `Schematico`…~~
 - **RF-6 Lingua**: selettore lingua; l'app parte in **italiano**; struttura i18n pronta per altre lingue.
 - **RF-7** Le scelte degli switch sono **persistite** (localStorage) e **riflesse nell'URL** (deep-link).
 
@@ -180,14 +190,16 @@ Principi:
 - Gli **stili** sono **token** consumati dagli engine dove sensato; non cambiano la fisica.
 - Le **demo** orchestrano: prendono i parametri → `computeDerived` (core) → passano i valori all'engine selezionato con i token dello stile selezionato.
 
-### 6.3 Strategy pattern del rendering (cuore del progetto)
+### 6.3 Contratti di rendering
+
+> Nota (giugno 2026): la versione iniziale prevedeva uno *strategy pattern* multi-engine
+> (`RenderingApproach`/`VisualStyle`, mappa `renderers` + `fallback`). Dopo il consolidamento
+> sullo schematico (vedi §1), i contratti sono quelli sotto: niente assi `approach`/`style`,
+> ogni demo ha una singola `scene`.
 
 ```ts
 // engines/types.ts
-export type RenderingApproach = 'three' | 'layered' | 'schematic';
-export type VisualStyle = 'realistic' | 'mixed' | 'schematic';
-
-/** Valori fisici calcolati dal core, comuni a tutti gli engine. */
+/** Valori fisici calcolati dal core, comuni a tutte le scene. */
 export interface DerivedPhysics {
   exposure: { evAt100: number; stopsFromTarget: number; displayBrightness: number };
   dof?: { nearM: number; farM: number; totalM: number; hyperfocalM: number; cocMm: number };
@@ -200,8 +212,7 @@ export interface DerivedPhysics {
 export interface SceneProps<P> {
   params: P;                 // parametri del concetto
   derived: DerivedPhysics;   // output del core
-  style: VisualStyle;        // skin attiva (token risolti via StyleProvider)
-  size: { width: number; height: number };
+  animate: boolean;          // false (o reduced-motion) → scena statica
 }
 
 export type RendererComponent<P> = React.FC<SceneProps<P>>;
@@ -214,18 +225,16 @@ export interface DemoModule<P> {
   titleKey: string;                 // chiave i18n
   group: 'core' | 'advanced';
   defaultParams: P;
-  controls: ControlSpec[];          // genera slider/ghiere in modo dichiarativo
+  controls: ControlSpec[];          // slider/ghiere (valori ordinati) o pulsanti (segment, scelte categoriali)
   computeDerived: (p: P) => DerivedPhysics;
-  renderers: Partial<Record<RenderingApproach, RendererComponent<P>>>;
-  fallback: RenderingApproach;      // engine usato se quello scelto non è presente
+  scene: RendererComponent<P>;      // scena schematica (SVG)
   presets?: Record<string, Partial<P>>;
 }
 ```
 
-Il componente host risolve l'engine effettivo:
+Il componente host monta la scena della demo:
 ```ts
-const Renderer = demo.renderers[selectedApproach] ?? demo.renderers[demo.fallback]!;
-// se ha fatto fallback → mostra un badge "questo concetto rende meglio in <engine>"
+const Scene = demo.scene; // un'unica scena schematica per demo
 ```
 
 ### 6.4 Stile come token (asse ortogonale)
@@ -257,15 +266,15 @@ ignora `useTextures` (disegna sempre a tratto) ma usa `palette`/`lineWeight`; l'
 
 ```ts
 interface AppState {
-  approach: RenderingApproach;
-  style: VisualStyle;
   locale: string;
+  currentDemoId: string;
   paramsByDemo: Record<string, unknown>;   // parametri correnti per demo
-  compareSnapshot?: { demoId: string; params: unknown };
-  set: (patch: Partial<AppState>) => void;
+  // setter: setLocale · setCurrentDemo · setDemoParams
 }
 ```
-Persistenza: `approach/style/locale` in `localStorage`; stato demo serializzato in URL (deep-link).
+Persistenza: `locale` e demo corrente in `localStorage`; parametri della demo serializzati in
+URL (deep-link). Il confronto A/B è stato locale del componente `DemoView`.
+*(In origine lo store conteneva anche `approach`/`style`, rimossi col consolidamento — vedi §1.)*
 
 ### 6.6 Struttura cartelle
 
@@ -281,16 +290,12 @@ photography-smanetting/
 │  │  └─ params/ stops.ts · ranges.ts
 │  ├─ engines/
 │  │  ├─ types.ts
-│  │  ├─ three/  · layered/  · schematic/
-│  │  └─ EngineHost.tsx           # risolve engine + fallback
-│  ├─ styles/  tokens.ts · realistic.ts · mixed.ts · schematic.ts · StyleProvider.tsx
+│  │  ├─ schematic/  (scene SVG delle demo) · three/  (anatomia 3D, scroll-driven)
+│  │  └─ EngineHost.tsx           # monta la scena della demo
 │  ├─ demos/
-│  │  ├─ shutter/ · aperture/ · iso/ · focal-length/ · exposure-triangle/
-│  │  └─ registry.ts              # elenco demo + ordine percorso
-│  ├─ explainers/                 # scroll-driven 3D (anatomia) — three-only
-│  │  ├─ reflex/ · sensor/ · optics/ · types.ts
-│  │  └─ registry.ts
-│  ├─ ui/  Shell.tsx · SwitchBar.tsx · LessonPanel.tsx · Slider.tsx · Dial.tsx · Histogram.tsx
+│  │  ├─ shutter/ · aperture/ · iso/ · focal/ · exposure-triangle/ · …
+│  │  └─ registry.ts              # elenco demo + ordine percorso (+ approfondimenti)
+│  ├─ ui/  Layout.tsx · LessonPanel.tsx · Slider.tsx · Dial.tsx · Segment.tsx · Histogram.tsx
 │  ├─ state/ store.ts
 │  ├─ i18n/ index.ts · it.json
 │  └─ types.ts

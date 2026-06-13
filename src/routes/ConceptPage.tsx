@@ -1,13 +1,42 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useT } from '../i18n';
-import { DEMOS, getDemo, getReference } from '../demos/registry';
+import { getDemo, getReference, pathNeighbors, PATH } from '../demos/registry';
 import { useAppStore } from '../state/store';
 import { theoryFor } from '../content/theory';
 import { TheorySection } from '../ui/TheorySection';
 import { QuizCard } from '../ui/QuizCard';
-import { SwitchBar } from '../ui/SwitchBar';
 import { DemoView } from '../ui/DemoView';
+
+/** Navigazione prev/next del percorso, condivisa da demo e approfondimenti. */
+function ConceptNav({ id }: { id: string }) {
+  const t = useT();
+  const { prev, next } = pathNeighbors(id);
+  const pos = PATH.findIndex((p) => p.id === id);
+  return (
+    <nav className="concept-nav">
+      {prev ? (
+        <Link className="concept-nav__link" to={`/c/${prev.id}`}>
+          ← {t(prev.titleKey)}
+        </Link>
+      ) : (
+        <Link className="concept-nav__link" to="/">
+          ← {t('nav.home')}
+        </Link>
+      )}
+      <span className="concept-nav__pos">
+        {pos + 1} / {PATH.length}
+      </span>
+      {next ? (
+        <Link className="concept-nav__link concept-nav__link--next" to={`/c/${next.id}`}>
+          {t(next.titleKey)} →
+        </Link>
+      ) : (
+        <span />
+      )}
+    </nav>
+  );
+}
 
 /** Dettaglio di un concetto: teoria approfondita, demo interattiva, quiz e navigazione del percorso. */
 export function ConceptPage() {
@@ -37,21 +66,12 @@ export function ConceptPage() {
 
         <QuizCard demoId={reference.id} />
 
-        <nav className="concept-nav">
-          <Link className="concept-nav__link" to="/">
-            ← {t('nav.home')}
-          </Link>
-          <span />
-          <span />
-        </nav>
+        <ConceptNav id={reference.id} />
       </article>
     );
   }
 
   const blocks = theoryFor(demo.id, locale);
-  const idx = DEMOS.findIndex((d) => d.id === demo.id);
-  const prev = idx > 0 ? DEMOS[idx - 1] : null;
-  const next = idx >= 0 && idx < DEMOS.length - 1 ? DEMOS[idx + 1] : null;
 
   return (
     <article className="concept">
@@ -67,31 +87,12 @@ export function ConceptPage() {
 
       <section className="concept__section">
         <h2 className="section-title">{t('section.demo')}</h2>
-        <SwitchBar />
         <DemoView demoId={demo.id} />
       </section>
 
       <QuizCard demoId={demo.id} />
 
-      <nav className="concept-nav">
-        {prev ? (
-          <Link className="concept-nav__link" to={`/c/${prev.id}`}>
-            ← {t(prev.titleKey)}
-          </Link>
-        ) : (
-          <span />
-        )}
-        <span className="concept-nav__pos">
-          {idx + 1} / {DEMOS.length}
-        </span>
-        {next ? (
-          <Link className="concept-nav__link concept-nav__link--next" to={`/c/${next.id}`}>
-            {t(next.titleKey)} →
-          </Link>
-        ) : (
-          <span />
-        )}
-      </nav>
+      <ConceptNav id={demo.id} />
     </article>
   );
 }
